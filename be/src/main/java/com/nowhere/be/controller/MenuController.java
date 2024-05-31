@@ -26,7 +26,7 @@ public class MenuController {
 
     // 메뉴 전체 조회
     @GetMapping("/menus")
-    public ResponseEntity<Map<String, Object>> selectAllMenus() {
+    public ResponseEntity<ResponseMessage> selectAllMenus() {
 
         // 응답 헤더 설정
         HttpHeaders headers = new HttpHeaders();
@@ -39,6 +39,6 @@ public class MenuController {
 
         ResponseMessage responseMessage = new ResponseMessage(200, "조회 성공", responseMap);
 
-        return new ResponseEntity<>(responseMap, headers, HttpStatus.OK);
+        return new ResponseEntity<>(responseMessage, headers, HttpStatus.OK);
     }
 }
