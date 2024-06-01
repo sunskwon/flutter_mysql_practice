@@ -21,4 +21,38 @@
         FROM TBL_MENU
         ORDER BY MENU_CODE
     </select>
+
+    <select id="selectMenuByCode" resultMap="MenuResultMap">
+        SELECT
+            MENU_CODE
+            , MENU_NAME
+            , MENU_PRICE
+            , CATEGORY_CODE
+            , ORDERABLE_STATUS
+        FROM TBL_MENU
+        WHERE MENU_CODE = #{ menuCode }
+    </select>
+
+    <select id="getLastMenuCode" resultType="_int">
+        SELECT
+            MAX(MENU_CODE)
+        FROM TBL_MENU
+    </select>
+
+    <insert id="insertMenu" parameterType="com.nowhere.be.model.dto.MenuDTO">
+        INSERT INTO TBL_MENU(
+            MENU_CODE
+            , MENU_NAME
+            , MENU_PRICE
+            , CATEGORY_CODE
+            , ORDERABLE_STATUS
+        )
+        VALUES(
+            #{ menuCode }
+            , #{ menuName }
+            , #{ menuPrice }
+            , #{ categoryCode }
+            , #{ orderableStatus }
+        )
+    </insert>
 </mapper>

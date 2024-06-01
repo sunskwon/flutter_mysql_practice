@@ -1,4 +1,5 @@
 import 'package:fe/selectallmenus.dart';
+import 'package:fe/selectmenubycode.dart';
 import 'package:flutter/material.dart';
 
 import 'mainpage.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MainPage(),
         '/selectallmenus': (context) => SelectAllMenus(),
+        '/selectmenubycode': (context) => SelectMenuByCode(),
       },
     );
   }

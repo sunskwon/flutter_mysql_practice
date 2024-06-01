@@ -1,1 +1,17 @@
+### 전체 메뉴 조회
 GET http://localhost:8080/menus
+
+### 단일 메뉴 조회
+GET http://localhost:8080/menus/1
+
+### 신규 메뉴 추가
+POST http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "menuCode": 0,
+  "menuName": "test",
+  "menuPrice": "1000",
+  "categoryCode": "4",
+  "orderableStatus": "Y"
+}
