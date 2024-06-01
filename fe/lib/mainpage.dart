@@ -18,6 +18,10 @@ class MainPage extends StatelessWidget {
                   Navigator.of(context).pushNamed('/selectallmenus');
                 },
                 child: Text('전체 메뉴 조회')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/insertmenu');
+            }, child: Text('신규 메뉴 추가')),
           ],
         ),
       ),

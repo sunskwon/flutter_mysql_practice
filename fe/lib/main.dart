@@ -1,7 +1,9 @@
-import 'package:fe/selectallmenus.dart';
 import 'package:fe/selectmenubycode.dart';
+import 'package:fe/selectallmenus.dart';
+import 'package:fe/selected.dart';
 import 'package:flutter/material.dart';
 
+import 'insertmenu.dart';
 import 'mainpage.dart';
 
 void main() {
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MainPage(),
         '/selectallmenus': (context) => SelectAllMenus(),
+        '/selected': (context) => Selected(),
+        '/insertmenu': (context) => InsertMenu(),
         '/selectmenubycode': (context) => SelectMenuByCode(),
       },
     );

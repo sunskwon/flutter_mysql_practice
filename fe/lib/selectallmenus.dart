@@ -66,14 +66,14 @@ class _SelectAllMenusState extends State<SelectAllMenus> {
                       child: Column(
                         children: <Widget>[
                           Row(children: [
-                            Text('${snapshot.data?[index]['menuCode']}'),
+                            Text('${snapshot.data?[index]['menuCode']}. '),
                             Text(snapshot.data?[index]['menuName']),
                           ]),
                         ],
                       ),
                       onTap: () {
                         Navigator.of(context)
-                            .pushNamed('/selectmenubycode', arguments: menus?[index]);
+                            .pushNamed('/selected', arguments: menus?[index]);
                       },
                     ),
                   );

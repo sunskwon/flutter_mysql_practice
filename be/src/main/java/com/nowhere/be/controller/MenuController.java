@@ -62,8 +62,11 @@ public class MenuController {
     public ResponseEntity<?> insertMenu(@RequestBody MenuDTO newMenu) {
 
         int newMenuCode = menuService.getLastMenuCode() + 1;
+        System.out.println("newMenu = " + newMenu);
 
         newMenu.setMenuCode(newMenuCode);
+
+        System.out.println("newMenu = " + newMenu);
 
         menuService.insertMenu(newMenu);
 
