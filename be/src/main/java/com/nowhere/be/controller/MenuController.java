@@ -62,16 +62,26 @@ public class MenuController {
     public ResponseEntity<?> insertMenu(@RequestBody MenuDTO newMenu) {
 
         int newMenuCode = menuService.getLastMenuCode() + 1;
-        System.out.println("newMenu = " + newMenu);
 
         newMenu.setMenuCode(newMenuCode);
-
-        System.out.println("newMenu = " + newMenu);
 
         menuService.insertMenu(newMenu);
 
         return ResponseEntity
                 .created(URI.create("/menus/" + newMenuCode))
+                .build();
+    }
+
+    @PutMapping("/menus")
+    public ResponseEntity<?> updateMenu(@RequestBody MenuDTO menu) {
+
+        System.out.println("menu = " + menu);
+        int menuCode = menu.getMenuCode();
+
+        menuService.updateMenu(menu);
+
+        return ResponseEntity
+                .created(URI.create("/menus/" + menuCode))
                 .build();
     }
 }

@@ -14,4 +14,6 @@ public interface MenuMapper {
     int getLastMenuCode();
 
     void insertMenu(MenuDTO newMenu);
+
+    void updateMenu(MenuDTO menu);
 }

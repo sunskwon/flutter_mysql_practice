@@ -15,3 +15,15 @@ Content-Type: application/json
   "categoryCode": "4",
   "orderableStatus": "Y"
 }
+
+### 메뉴 수정
+PUT http://localhost:8080/menus
+Content-Type: application/json
+
+{
+  "menuCode": 22,
+  "menuName": "",
+  "menuPrice": 0,
+  "categoryCode": 0,
+  "orderableStatus": ""
+}

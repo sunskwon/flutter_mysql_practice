@@ -15,19 +15,23 @@ class Selected extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('selected'),
+        title: const Text('selected'),
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('menu code : ${menu.menuCode}'),
-            Text('menu name : ${menu.menuName}'),
-            Text('menu price : ${menu.menuPrice}'),
-            Text('category code : ${menu.categoryCode}'),
-            Text('orderable status : ${menu.orderableStatus}'),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('menu code : ${menu.menuCode}'),
+          Text('menu name : ${menu.menuName}'),
+          Text('menu price : ${menu.menuPrice}'),
+          Text('category code : ${menu.categoryCode}'),
+          Text('orderable status : ${menu.orderableStatus}'),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).popAndPushNamed('/updatemenu', arguments: menu.menuCode);
+        },
+        child: const Icon(Icons.edit),
       ),
     );
   }

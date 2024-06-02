@@ -74,6 +74,12 @@ class _SelectMenuByCodeState extends State<SelectMenuByCode> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).popAndPushNamed('/updatemenu', arguments: menu?.menuCode);
+        },
+        child: const Icon(Icons.edit),
+      ),
     );
   }
 }

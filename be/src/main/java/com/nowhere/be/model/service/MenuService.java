@@ -32,4 +32,8 @@ public class MenuService {
     public void insertMenu(MenuDTO newMenu) {
         menuMapper.insertMenu(newMenu);
     }
+
+    public void updateMenu(MenuDTO menu) {
+        menuMapper.updateMenu(menu);
+    }
 }
