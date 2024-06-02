@@ -67,12 +67,35 @@ class _SelectMenuByCodeState extends State<SelectMenuByCode> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.of(context).popAndPushNamed('/updatemenu', arguments: menu?.menuCode);
-        },
-        icon: const Icon(Icons.edit),
-        label: Text('update'),
+      floatingActionButton: Stack(
+        // FloatingActionButton 2개 이상 사용하기
+        children: <Widget>[
+          Align(
+            alignment: Alignment(
+                Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.of(context)
+                    .popAndPushNamed('/updatemenu', arguments: menu?.menuCode);
+              },
+              icon: const Icon(Icons.edit),
+              label: Text('update'),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton.extended(
+              onPressed: () async {
+                final requestUrl = baseUrl + "/menus/" + menu!.menuCode.toString();
+                var responses = await dio.delete(requestUrl);
+
+                Navigator.of(context).pushReplacementNamed('/selectallmenus');
+              },
+              icon: const Icon(Icons.delete),
+              label: Text('delete'),
+            ),
+          ),
+        ],
       ),
     );
   }
