@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
@@ -7,11 +8,10 @@ class Selected extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseUrl = 'http://10.0.2.2:8080/menus';
+    final dio = Dio();
     final transfer = ModalRoute.of(context)!.settings.arguments;
-    // print(transfer);
-    Menu menu = Menu.fromJson(transfer);
-    // print(menu);
-    // print(menu.menuCode);
+    Menu menu = Menu.fromJson(transfer); // arguments로 전달받은 menu를 객체로 변환
 
     return Scaffold(
       appBar: AppBar(
@@ -27,11 +27,35 @@ class Selected extends StatelessWidget {
           Text('orderable status : ${menu.orderableStatus}'),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).popAndPushNamed('/updatemenu', arguments: menu.menuCode);
-        },
-        child: const Icon(Icons.edit),
+      floatingActionButton: Stack(
+        // FloatingActionButton 2개 이상 사용하기
+        children: <Widget>[
+          Align(
+            alignment: Alignment(
+                Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.of(context)
+                    .popAndPushNamed('/updatemenu', arguments: menu.menuCode);
+              },
+              icon: const Icon(Icons.edit),
+              label: Text('update'),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton.extended(
+              onPressed: () async {
+                final requestUrl = baseUrl + "/" + menu.menuCode.toString();
+                var responses = await dio.delete(requestUrl);
+
+                Navigator.of(context).pushReplacementNamed('/selectallmenus');
+              },
+              icon: const Icon(Icons.delete),
+              label: Text('delete'),
+            ),
+          ),
+        ],
       ),
     );
   }

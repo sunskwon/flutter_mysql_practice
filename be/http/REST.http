@@ -27,3 +27,6 @@ Content-Type: application/json
   "categoryCode": 0,
   "orderableStatus": ""
 }
+
+### 메뉴 삭제
+DELETE http://localhost:8080/menus/23

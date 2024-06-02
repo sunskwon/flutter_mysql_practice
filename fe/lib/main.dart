@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MainPage(),
-        '/selectallmenus': (context) => SelectAllMenus(),
-        '/selected': (context) => Selected(),
-        '/insertmenu': (context) => InsertMenu(),
-        '/selectmenubycode': (context) => SelectMenuByCode(),
-        '/updatemenu': (context) => UpdateMenu(),
+        '/selectallmenus': (context) => SelectAllMenus(), // 전체 메뉴 조회
+        '/selected': (context) => Selected(),   // 전체 메뉴 조회 => 단일 조회
+        '/insertmenu': (context) => InsertMenu(), // 신규 메뉴 추가
+        '/selectmenubycode': (context) => SelectMenuByCode(), // 단일 메뉴 조회
+        '/updatemenu': (context) => UpdateMenu(), // 메뉴 수정
       },
     );
   }

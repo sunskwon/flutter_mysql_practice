@@ -12,27 +12,20 @@ class SelectMenuByCode extends StatefulWidget {
 }
 
 class _SelectMenuByCodeState extends State<SelectMenuByCode> {
-  Menu? menu;
-  final dio = Dio();
   final baseUrl = 'http://10.0.2.2:8080';
+  final dio = Dio();
+  Menu? menu;
 
   @override
   Widget build(BuildContext context) {
     final transfer = ModalRoute.of(context)!.settings.arguments;
-    // print('transfer $transfer');
 
     Future<Menu?> _asyncMethod() async {
       final url = baseUrl + transfer.toString();
-      // print('url : $url');
 
       final response = await dio.get(url);
-      // print(response);
-      // print(response.data);
-      // print(response.data['results']);
-      // print(response.data['results']['menu']);
       setState(() {
         menu = Menu.fromJson(response.data['results']['menu']);
-        // print(menu);
       });
 
       return menu;
@@ -74,11 +67,12 @@ class _SelectMenuByCodeState extends State<SelectMenuByCode> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.of(context).popAndPushNamed('/updatemenu', arguments: menu?.menuCode);
         },
-        child: const Icon(Icons.edit),
+        icon: const Icon(Icons.edit),
+        label: Text('update'),
       ),
     );
   }

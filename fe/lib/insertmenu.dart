@@ -71,36 +71,27 @@ class _InsertMenuState extends State<InsertMenu> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           _insertMenu();
         },
-        child: const Icon(Icons.add),
+        icon: const Icon(Icons.add),
+        label: Text('regist'),
       ),
     );
   }
 
   void _insertMenu() async {
-    // print(_menuNameController!.value.text);
-    // print(_menuPriceController!.value.text);
-    // print(_categoryCodeController!.value.text);
-    // print(_orderableStatusController!.value.text);
-
     String requestUrl = '$baseUrl/menus';
+    var respones = await dio.post(requestUrl, data: {
+      'menuCode': 0,
+      'menuName': _menuNameController!.value.text,
+      'menuPrice': _menuPriceController!.value.text,
+      'categoryCode': _categoryCodeController!.value.text,
+      'orderableStatus': _orderableStatusController!.value.text
+    });
 
-    var respones = await dio.post(requestUrl, data: {'menuCode': 0, 'menuName': _menuNameController!.value.text, 'menuPrice': _menuPriceController!.value.text, 'categoryCode': _categoryCodeController!.value.text, 'orderableStatus': _orderableStatusController!.value.text});
-
-    // print(respones);
-    // print(respones.runtimeType);
-    // print(respones.data);
-    // print(respones.headers);
-    // print(respones.headers['location']);
-    // print(respones.headers['location']?[0]);
-    // print(respones.requestOptions);
-    // print(respones.statusCode);
-
-    // print(baseUrl + respones.headers['location']![0]);
-    Navigator.popAndPushNamed(context, '/selectmenubycode', arguments: respones.headers['location']![0]);
-    // Navigator.popAndPushNamed(context, '/selectmenubycode', arguments: '/menus/1');
+    Navigator.popAndPushNamed(context, '/selectmenubycode',
+        arguments: respones.headers['location']![0]);
   }
 }

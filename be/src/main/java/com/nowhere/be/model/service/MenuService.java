@@ -36,4 +36,8 @@ public class MenuService {
     public void updateMenu(MenuDTO menu) {
         menuMapper.updateMenu(menu);
     }
+
+    public void deleteMenu(int menuCode) {
+        menuMapper.deleteMenu(menuCode);
+    }
 }

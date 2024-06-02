@@ -84,4 +84,12 @@ public class MenuController {
                 .created(URI.create("/menus/" + menuCode))
                 .build();
     }
+
+    @DeleteMapping("/menus/{menuCode}")
+    public ResponseEntity<?> deleteMenu(@PathVariable int menuCode) {
+
+        menuService.deleteMenu(menuCode);
+
+        return ResponseEntity.noContent().build();
+    }
 }
